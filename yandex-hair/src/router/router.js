@@ -5,6 +5,7 @@ import Login from "../components/Login.vue";
 import Register from "../components/Register.vue";
 import Home from "../components/Home.vue";
 import HelloWorld from "../components/HelloWorld.vue";
+import ChooseAccount from "../components/ChooseAccount.vue";
 
 const routes = [
     {
@@ -44,11 +45,11 @@ const routes = [
                 name: "Register",
                 component: Register,
             },
-            // {
-            //     path: "/hello",
-            //     name: "HelloWorld",
-            //     component: HelloWorld,
-            // }
+            {
+                path: "",
+                name: "Choose Account",
+                component: ChooseAccount,
+            }
         ]
     }
 ];
