@@ -4,6 +4,8 @@ import datetime as _dt
 
 import database as _database
 
+
+
 class Users(_database.Base):
     __tablename__ = "users"
     id = _sql.Column(_sql.Integer, primary_key=True, index=True)
@@ -13,6 +15,7 @@ class Users(_database.Base):
     telephone = _sql.Column(_sql.Text)
     mail = _sql.Column(_sql.Text, unique=True)
     client = _sql.Column(_sql.Integer)
+    password = _sql.Column(_sql.Text)
 
 class Appointments(_database.Base):
     __tablename__ = "appointments"
@@ -26,11 +29,11 @@ class Appointments(_database.Base):
     loc_long = _sql.Column(_sql.Text)
 
 
-class Credentials(_database.Base):
-    __tablename__= "credentials"
-    id = _sql.Column(_sql.Integer, primary_key=True, index=True)
-    user_id = _sql.Column(_sql.Integer,_sql.ForeignKey("users.id"))
-    master_id = _sql.Column(_sql.Integer,_sql.ForeignKey("users.id"))
+# class Credentials(_database.Base):
+#     __tablename__= "credentials"
+#     id = _sql.Column(_sql.Integer, primary_key=True, index=True)
+#     user_id = _sql.Column(_sql.Integer,_sql.ForeignKey("users.id"))
+#     master_id = _sql.Column(_sql.Integer,_sql.ForeignKey("users.id"))
 
     # owner = _orm.relationship("Patients", back_populates="analysis")
 

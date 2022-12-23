@@ -32,11 +32,18 @@ def get_appointments_by_id(db: _orm.Session, id: int):
 
 
 def create_user(db: _orm.Session, user:_schemas.UsersCreate):
-    db_user=_models.Users(name=user.name, surname=user.surname, date_of_birth=user.date_of_birth, telephone=user.telephone, mail=user.mail, client=user.client)
+    db_user=_models.Users(name=user.name, surname=user.surname, date_of_birth=user.date_of_birth, telephone=user.telephone, mail=user.mail, client=user.client, password = user.password)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
     return db_user
+
+def create_appointment(db: _orm.Session, appointment:_schemas.AppointmentsCreate):
+    db_appointment=_models.Appointments(user_id=appointment.user_id, service=appointment.service, date=appointment.date, time=appointment.time, hair_length=appointment.hair_length, loc_lat=appointment.loc_lat, loc_long=appointment.loc_long)
+    db.add(db_appointment)
+    db.commit()
+    db.refresh(db_appointment)
+    return db_appointment
 
 
 # def delete_patient_and_its_analysis(db:_orm.Session, id: int):

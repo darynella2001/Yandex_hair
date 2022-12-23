@@ -6,24 +6,27 @@ import sqlalchemy.orm as _orm
 import schemas as _schemas
 import services as _services
 import uvicorn
-import requests
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 
 app = _fastapi.FastAPI()
-
+security = HTTPBasic()
 _services.create_database()
 
-# HOST = "bl"
 HOST = "localhost"
 PORT = 8000
 
 
 
 
-@app.post("/user/", response_model=_schemas.Users)
+@app.post("/signup/", response_model=_schemas.Users)
 def create_user(user: _schemas.UsersCreate, db: _orm.Session = _fastapi.Depends(_services.get_db)):
     
     return _services.create_user(db=db, user=user)
 
+# @app.post("/login/",response_model=_schemas.Users)
+# async def login(username: str, password:str):
+
+#     return users
 
 @app.get("/user/", response_model=List[_schemas.Users])
 async def read_users(db: _orm.Session = _fastapi.Depends(_services.get_db)):
@@ -36,10 +39,22 @@ async def read_specific_user(id: int, db: _orm.Session = _fastapi.Depends(_servi
     db_user = _services.get_users_by_id(db=db, id=id)
     return db_user
 
+@app.post("/order/", response_model=_schemas.Appointments)
+def create_appointment(appointment: _schemas.AppointmentsCreate, db: _orm.Session = _fastapi.Depends(_services.get_db)):
+    
+    return _services.create_appointment(db=db, appointment=appointment)
+
+@app.get("/appointment/", response_model=List[_schemas.Appointments])
+async def read_appointments(db: _orm.Session = _fastapi.Depends(_services.get_db)):
+    appointments = _services.get_appointments(db=db)
+    return appointments
+
 @app.get("/appointment/{id}", response_model=_schemas.Appointments)
 async def read_specific_appointment(id: int, db: _orm.Session = _fastapi.Depends(_services.get_db)):
     db_appointment = _services.get_appointments_by_id(db=db, id=id)
     return db_appointment
+
+
 
 # @app.get("/patient/doctor/{doctor_id}", response_model=List[_schemas.Patients])
 # async def read_patients(doctor_id: int, db: _orm.Session = _fastapi.Depends(_services.get_db)):

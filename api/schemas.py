@@ -1,6 +1,8 @@
 import pydantic as _pydantic
 import datetime as _dt
 
+
+
 class _UsersBase(_pydantic.BaseModel):
     name: str
     surname: str
@@ -8,6 +10,7 @@ class _UsersBase(_pydantic.BaseModel):
     telephone: str
     mail: str
     client: int
+    password: str
 
 class UsersCreate(_UsersBase):
     pass
