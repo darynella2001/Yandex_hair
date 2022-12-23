@@ -1,25 +1,25 @@
 <template>
   <div>
     <router-link
-        to="/client_home"
+        to="/login"
         custom
         v-slot="{ navigate }"
     >
     <button @click="navigate"
             role="link">
-      Client
+      Login
     </button>
     </router-link>
   </div>
   <div>
     <router-link
-        to="/hairdresser_home"
+        to="/register"
         custom
         v-slot="{ navigate }"
     >
       <button @click="navigate"
               role="link">
-        Hairdresser
+        Register
       </button>
     </router-link>
   </div>
