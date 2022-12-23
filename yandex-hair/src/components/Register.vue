@@ -46,7 +46,7 @@
                     >Email</label
                     ><input
                       type="email"
-                      v-model="form.email"
+                      v-model="form.mail"
                       class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                       placeholder="Email"
                       style="transition: all 0.15s ease 0s;"
@@ -56,33 +56,25 @@
                     <label
                         class="block uppercase text-indigo-900 text-sm font-bold mb-2"
                         for="grid-password"
-                    >Phone</label
+                    >Telephone</label
                     ><input
-                      type="phone"
-                      v-model="form.phone"
+                      type="text"
+                      v-model="form.telephone"
                       class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                      placeholder="Phone"
+                      placeholder="Telephone"
                       style="transition: all 0.15s ease 0s;"
                   />
-                  </div>
-                  <div>
-                    <input type="radio" id="male" name="gender" value="Male">
-                    <label for="html">Male</label><br>
-                    <input type="radio" id="female" name="gender" value="Female">
-                    <label for="css">Female</label><br>
-                    <input type="radio" id="child" name="gender" value="Child">
-                    <label for="javascript">Child</label>
                   </div>
                   <div class="relative w-full mb-3">
                     <label
                         class="block uppercase text-indigo-900 text-sm font-bold mb-2"
                         for="grid-password"
-                    >Surname</label
+                    >Date of birth</label
                     ><input
-                      type="surname"
-                      v-model="form.surname"
+                      type="date"
+                      v-model="form.date_of_birth"
                       class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                      placeholder="Surname"
+                      placeholder="Date of birth"
                       style="transition: all 0.15s ease 0s;"
                   />
                   </div>
@@ -127,10 +119,11 @@ export default {
       form: {
         name: "",
         surname: "",
-        email: "",
-        phone: "",
-        password: "",
-        gender: ""
+        date_of_birth: "",
+        telephone: "",
+        mail: "",
+        client: 1,
+        password: ""
       }
     }
   },
@@ -140,7 +133,7 @@ export default {
   methods: {
     register() {
       this.$store.dispatch('register', this.form).then(() => {
-        this.$router.push({name:'HomePage'})
+        this.$router.push({path:'/client_home'})
       })
     }
   }
